@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>User List</title>
+<link type="text/css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+	<div class="container">
+		<div th:switch="@{userlist}" align="center">
+		
+		<h1>User List:</h1>
+		<div class="alert alert-success" role="alert" th:text="${success}" th:if="${success}"></div>
+		<div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+		<a th:href="@{/}" >Add User</a>
+			<table class="table table-bordered">
+			  <thead>
+				<tr>
+					<th>Name</th>
+					<th>Age</th>
+					<th>Title</th>
+					<th>Hometown</th>
+				</tr>
+				</thead>
+					<tbody>
+						<tr th:each="user:${userlist}">
+								<td th:text="${user.name}"></td>
+								<td th:text="${user.age}"></td>
+								<td th:text="${user.title}"></td>
+								<td th:text="${user.hometown}"></td>
+								
+						</tr>
+					</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

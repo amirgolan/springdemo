@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Users</title>
+<link type="text/css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+	<div class="container">
+		<div th:switch="@{userlist}" align="center">
+			<h1>User List:</h1>
+			
+				<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Age</th>
+						<th>Title</th>
+						<th>Hometown</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr th:each="user:${userlist}">
+						<td th:text="${user.name}"></td>
+						<td th:text="${user.age}"></td>
+						<td th:text="${user.title}"></td>
+						<td th:text="${user.hometown}"></td>
+						
+				</tr>
+				
+			</table>
+			<br/>
+			<div class="container">
+				  <div>
+					<h2>New User Confrmation</h2>
+					<hr/>
+					<p>Name: <strong th:text="${userobj.name}"></strong></p>
+					<p>Age: <strong th:text="${userobj.age}"></strong></p>
+					<p>Title: <strong th:text="${userobj.title}"></strong></p>
+					<p>Hometown: <strong th:text="${userobj.hometown}"></strong></p>
+					<hr/>
+					 <form action="#" th:action="@{/insert}" th:object="${userobj}" method="post">
+						<input type="hidden" th:field="*{name}" id="name" th:required="required" placeholder="Name"> 
+						<input type="hidden" th:field="*{age}" id="age" placeholder="Age"> 
+			            <input type="hidden" th:field="*{title}" id="title" th:required="required" placeholder="Title"> 
+			            <input type="hidden" th:field="*{hometown}" id="hometown" placeholder="Hometown">
+			            <button type="submit" class="btn btn-primary">Confirm</button>
+			            <a th:href="@{/backtoform}" >Start again</a>
+			        </form>
+			</div>
+		
+		</div>
+	</div>
+</body>
+</html>
